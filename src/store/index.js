@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
-
+import createPersistedState from "vuex-persistedstate";
+import auth_store from './modules/auth_store';
 export default createStore({
   state: {
   },
@@ -8,5 +9,7 @@ export default createStore({
   actions: {
   },
   modules: {
-  }
+    auth_store
+  },
+  plugins: [createPersistedState()],
 })

@@ -35,6 +35,13 @@
 <script>
 export default {
   name: 'HelloWorld',
+  created: function(){
+    window.axios.get('/products/1').then((res)=>{
+      console.log(res.data);
+    }).catch(err=>{
+      console.log(err);
+    })
+  },
   props: {
     msg: String
   }
