@@ -23,7 +23,7 @@ import ManagementEntryList from '../views/backend/mangement/ManagementEntryList.
 import ManagementProfile from '../views/backend/mangement/ManagementProfile.vue';
 import ManagementNewEntry from '../views/backend/mangement/MangemnetNewEntry.vue';
 import ManagementBookList from '../views/backend/mangement/MangementBooklist.vue';
-
+import Forget from '../views/frontend/Forget.vue';
 
 
 const routes = [
@@ -144,6 +144,11 @@ const routes = [
         path: 'signup',
         name: 'signUp',
         component: SignUp
+      },
+      {
+        path: 'forget',
+        name: 'forget',
+        component: Forget
       },
     ],
   },

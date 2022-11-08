@@ -39,7 +39,7 @@
               <br />
           <div class="text-left mt-2 m-l-20">
             Forget Password??
-            <router-link to="">Click here</router-link>
+            <router-link :to="{ name:'forget'}">Click here</router-link>
           </div>
             </div>
           </div>
