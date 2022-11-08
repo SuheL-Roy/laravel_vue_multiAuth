@@ -1,10 +1,25 @@
 <template>
   <div class="page-sidebar custom-scrollbar">
     <div class="sidebar-user text-center">
-      <div>
+      <!-- <div>
         <img class="img-50 rounded-circle" src="/assets/images/user/1.jpg" alt="#" />
       </div>
-      <h6 class="mt-3 f-12">Johan Deo</h6>
+      <h6 class="mt-3 f-12">Johan Deo</h6> -->
+      <div>
+        <img
+          v-if="get_auth_info.image"
+          alt=""
+          class="img-50 rounded-circle"
+          :src="get_profile_image_url"
+        />
+        <img
+          v-else
+          class="img-50 rounded-circle"
+          src="/assets/images/user/1.jpg"
+          alt="#"
+        />
+      </div>
+      <h6 class="mt-3 f-12">{{ get_auth_info.username }}</h6>
     </div>
     <ul class="sidebar-menu">
       <li v-if="get_auth_role_name == 'admin'">
@@ -161,7 +176,9 @@ export default {
   computed: {
     ...mapGetters([
       'get_check_auth',
-      'get_auth_role_name'
+      'get_auth_role_name',
+      'get_profile_image_url',
+      'get_auth_info'
     ])
   }
 };

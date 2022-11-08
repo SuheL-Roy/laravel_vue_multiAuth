@@ -5,10 +5,26 @@
         <div class="cardheader"></div>
         <div class="user-image">
           <div class="avatar">
-            <img alt="" src="/assets/images/user/11.png" />
+            <img 
+             v-if="get_auth_info.image"
+              alt="" 
+              :src="get_profile_image_url"
+            />
+            <img v-else alt="" src="https://i.picsum.photos/id/24/4855/1803.jpg?hmac=ICVhP1pUXDLXaTkgwDJinSUS59UWalMxf4SOIWb9Ui4"/>
           </div>
           <div class="icon-wrapper">
-            <i class="icofont icofont-pencil-alt-5"></i>
+          <form enctype="multipart/form-data" id="change_profile_pic">
+            <label for="image">
+                <i class="icofont icofont-pencil-alt-5"></i>
+              </label>
+              <input
+                type="file"
+                id="image"
+                @change="change_profile"
+                name="image"
+                style="display: none"
+              />
+          </form>
           </div>
         </div>
         <div class="info">
@@ -20,7 +36,7 @@
                     <h6>
                       <i class="fa fa-envelope"></i>&nbsp;&nbsp;&nbsp;Email
                     </h6>
-                    <span>Marekjecno@yahoo.com</span>
+                    <span>{{get_auth_info.email}}</span>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -34,9 +50,9 @@
             <div class="col-sm-12 col-lg-4 order-sm-0 order-xl-1">
               <div class="user-designation">
                 <div class="title">
-                  <a target="_blank" href="#">Mark jecno</a>
+                  <a target="_blank" href="#">{{get_auth_info.username}}</a>
                 </div>
-                <div class="desc mt-2">designer</div>
+                <div class="desc mt-2">{{get_auth_role_name}}</div>
               </div>
             </div>
             <div class="col-sm-6 col-lg-4 order-sm-2 order-xl-2">
@@ -95,23 +111,19 @@
           </div>
           <div class="row card mt-4">
             <div class="col-12 card-body">
-              <form action="#">
+              <form action="#" id="update_profile" @submit.prevent="update_profile">
                 <h3>Update Profile</h3>
                 <div class="form-group text-left">
-                  <label for="">First Name</label>
-                  <input type="text" class="form-control" />
-                </div>
-                <div class="form-group text-left">
-                  <label for="">Last Name</label>
-                  <input type="text" class="form-control" />
+                  <label for="">username</label>
+                  <input type="text" name="name" :value="get_auth_info.username" class="form-control" />
                 </div>
                 <div class="form-group text-left">
                   <label for="">Password</label>
-                  <input type="text" class="form-control" />
+                  <input type="password"  name="password" class="form-control" />
                 </div>
                 <div class="form-group text-left">
                   <label for="">Confirm Password</label>
-                  <input type="text" class="form-control" />
+                  <input type="password" name="password_confirmation" class="form-control" />
                 </div>
                 <div class="form-group text-left">
                   <button class="btn btn-info">Submit</button>
@@ -126,8 +138,41 @@
 </template>
    
    <script>
+import { mapGetters, mapMutations } from 'vuex'
    export default {
-     name:'StudentProfile'
+     name:'StudentProfile',
+
+     methods:{
+      ...mapMutations([
+        'set_check_auth',
+        'set_auth_info'
+      ]),
+      update_profile:function(){
+        let form_data = new FormData(document.getElementById('update_profile'));
+        window.axios.post('/user/up',form_data).then((res)=>{
+          console.log(res.data);
+          this.set_auth_info(res.data.user);
+        }).catch(err=>{
+          console.log(err.response);
+        })
+      },
+      change_profile:function(){
+        let form_data = new FormData(document.getElementById('change_profile_pic'));
+        window.axios.post('/user/update-pic',form_data).then((res)=>{
+          console.log(res.data);
+          this.set_auth_info(res.data.user);
+        }).catch(err=>{
+          console.log(err.response);
+        })
+      }
+     },
+     computed:{
+      ...mapGetters([
+        'get_auth_info',
+        'get_auth_role_name',
+        'get_profile_image_url'
+      ])
+     }
    }
    </script>
    

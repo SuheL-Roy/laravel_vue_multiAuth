@@ -70,9 +70,9 @@ export default {
            console.log(res.data);
            this.set_auth_token({token:res.data.access_token});
            this.set_auth_info(res.data.user);
-           localStorage.setItem('b-token',res.data.user.access_token);
+          //  localStorage.setItem('b-token',res.data.user.access_token);
       }).catch(err=>{
-         console.log(err);
+         console.log(err.response);
       })
      }  
     },
