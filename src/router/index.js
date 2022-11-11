@@ -24,6 +24,8 @@ import ManagementProfile from '../views/backend/mangement/ManagementProfile.vue'
 import ManagementNewEntry from '../views/backend/mangement/MangemnetNewEntry.vue';
 import ManagementBookList from '../views/backend/mangement/MangementBooklist.vue';
 import Forget from '../views/frontend/Forget.vue';
+import BookEdit from '../views/backend/admin/BookEdit.vue';
+import BookEntryEdit from '../views/backend/admin/BookEntryedit.vue';
 
 
 const routes = [
@@ -52,9 +54,19 @@ const routes = [
         component: Profile
       },
       {
+        path: 'book-edit/:id',
+        name: 'BookEdit',
+        component: BookEdit
+      },
+      {
         path: 'book-entry',
         name: 'BookEntry',
         component: BooKEntry
+      },
+      {
+        path: 'book-entry/:id',
+        name: 'BookEditEntry',
+        component: BookEntryEdit
       },
       {
         path: 'book-list',

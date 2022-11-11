@@ -1,10 +1,6 @@
 <template>
   <div class="page-sidebar custom-scrollbar">
     <div class="sidebar-user text-center">
-      <!-- <div>
-        <img class="img-50 rounded-circle" src="/assets/images/user/1.jpg" alt="#" />
-      </div>
-      <h6 class="mt-3 f-12">Johan Deo</h6> -->
       <div>
         <img
           v-if="get_auth_info.image"
@@ -26,9 +22,8 @@
         <div class="sidebar-title">Admin</div>
         <a href="#" class="sidebar-header">
           <i class="icon-desktop"></i><span>Link</span>
-          <i class="fa fa-angle-right pull-right"></i>
-        </a>
-        <ul class="sidebar-submenu">
+       </a>
+        <ul >
           <li>
             <router-link :to="{ name: 'admin' }">Home</router-link>
           </li>
@@ -56,9 +51,8 @@
         <div class="sidebar-title">Student</div>
         <a href="#" class="sidebar-header">
           <i class="icon-desktop"></i><span>Link</span>
-          <i class="fa fa-angle-right pull-right"></i>
         </a>
-        <ul class="sidebar-submenu">
+        <ul>
           <li>
             <router-link :to="{ name: 'student' }">Student</router-link>
           </li>
@@ -77,9 +71,8 @@
         <div class="sidebar-title">Management</div>
         <a href="#" class="sidebar-header">
           <i class="icon-desktop"></i><span>Link</span>
-          <i class="fa fa-angle-right pull-right"></i>
         </a>
-        <ul class="sidebar-submenu">
+        <ul>
           <li>
             <router-link :to="{ name: 'management' }">Management</router-link>
           </li>
@@ -115,10 +108,10 @@ export default {
   name: "sidebar-page",
 
   created: function () {
-    this.init_jq();
+    this.init();
   },
   methods: {
-    init_jq: function () {
+    init: function () {
       "use strict";
       setTimeout(() => {
         $.sidebarMenu = function (menu) {
