@@ -14,10 +14,11 @@ import AdminLayout from '../views/backend/admin/AdminLayout.vue';
 import Profile from '../views/backend/admin/Profile.vue';
 import NewEntry from '../views/backend/admin/NewEntry.vue';
 import EntryList from '../views/backend/admin/EntryList.vue';
-import BookLists from '../views/backend/student/BookList.vue';
+import BookLists from '../views/backend/student/BookListEntry.vue';
 import EntryDetails from '../views/backend/student/EntryDeatails.vue';
 import StudentProfile from '../views/backend/student/StudentProfile.vue';
 import StudentLayout from '../views/backend/student/StudentLayout.vue';
+import StudentEntryDetails from '../views/backend/student/StudentEntryDetails.vue';
 import ManagementLayout from '../views/backend/mangement/ManagementLayout.vue';
 import ManagementEntryList from '../views/backend/mangement/ManagementEntryList.vue';
 import ManagementProfile from '../views/backend/mangement/ManagementProfile.vue';
@@ -26,6 +27,9 @@ import ManagementBookList from '../views/backend/mangement/MangementBooklist.vue
 import Forget from '../views/frontend/Forget.vue';
 import BookEdit from '../views/backend/admin/BookEdit.vue';
 import BookEntryEdit from '../views/backend/admin/BookEntryedit.vue';
+import HomePage from '../views/frontend/HomePage.vue';
+import HomeLayout from '../views/frontend/HomeLayout.vue';
+
 
 
 const routes = [
@@ -99,15 +103,26 @@ const routes = [
         name: 'StudentProfile',
         component: StudentProfile
       },
-      {
-        path: 'entry-details',
-        name: 'EntryDetails',
-        component: EntryDetails
-      },
+      
       {
         path: 'book-list',
         name: 'Book-Lists',
         component: BookLists
+      },
+      {
+        path: "entry-details",
+        name: 'EntryDetails',
+        component: EntryDetails
+      },
+      {
+        path: "entry-details",
+        name: 'EntryDetails',
+        component: EntryDetails
+      },
+      {
+        path: "student-entry-details/:id",
+        name: 'StudentEntryDetails',
+        component: StudentEntryDetails
       },
     ]
   },
@@ -165,10 +180,22 @@ const routes = [
     ],
   },
   {
-    path: '/portfolio',
-    name: 'portfolio',
-    component: Portfolio
+    path: '/home',
+    component: HomeLayout,
+    children: [
+      {
+        path: '',
+        name: 'homepage',
+        component: HomePage
+      },
+      {
+        path: '/portfolio',
+        name: 'portfolio',
+        component: Portfolio
+      },
+    ],
   },
+ 
 ]
 
 const router = createRouter({

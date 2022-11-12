@@ -71,7 +71,8 @@ export default {
         }
 
       } else {
-        this.$router.replace({ name: "login" });
+         this.$router.replace({ name: "login" });
+        //this.$router.replace({ name: "homepage" });
       }
     }
   },
